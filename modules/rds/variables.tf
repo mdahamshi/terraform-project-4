@@ -54,8 +54,15 @@ variable "credentials" {
     condition = (
       length(regexall("[a-zA-Z]+", var.credentials.password)) > 0
       && length(regexall("[0-9]+", var.credentials.password)) > 0
-      && length(regexall("^[a-zA-Z0-9]{6,}$", var.credentials.password)) > 0
+      && length(regexall("^[a-zA-Z0-9+_?-]{8,}$", var.credentials.password)) > 0
     )
-    error_message = "Password must contain at least one character and 1 digit, and at least 6 characters long"
+    error_message = <<-EOT
+    Password must comply with the following format:
+
+    1. Contain at least 1 character
+    2. Contain at least 1 digit
+    3. Be at least 8 characters long
+    4. Contain only the following characters: a-z, A-Z, 0-9, +, _, ?, -
+    EOT
   }
 }
