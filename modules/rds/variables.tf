@@ -3,9 +3,9 @@ variable "project_name" {
   description = "The project name."
 }
 
-
+##################
 # DB config
-
+##################
 variable "instance_class" {
   type        = string
   default     = "db.t3.micro"
@@ -65,4 +65,19 @@ variable "credentials" {
     4. Contain only the following characters: a-z, A-Z, 0-9, +, _, ?, -
     EOT
   }
+}
+
+##################
+# DB network
+##################
+
+variable "subnet_ids" {
+  type        = list(string)
+  description = "Subnet IDs to deploy the RDS instance in."
+
+}
+variable "security_group_ids" {
+  type        = list(string)
+  description = "Security group IDs to attach to the RDS instance."
+
 }
