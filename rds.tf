@@ -9,3 +9,13 @@ resource "aws_db_instance" "default" {
   parameter_group_name = "default.mysql8.0"
   skip_final_snapshot  = true
 }
+
+module "database" {
+  source = "./modules/rds"
+
+  project_name = "project-04-rds-module"
+  credentials = {
+    username = "db-admin"
+    password = "12A3a3"
+  }
+}
