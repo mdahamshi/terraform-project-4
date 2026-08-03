@@ -12,6 +12,18 @@ data "aws_subnet" "input" {
     postcondition {
       condition     = self.vpc_id != data.aws_vpc.default.id
       error_message = <<-EOT
+        The following subnet is part of the default VPC:
+
+        Name = ${self.tags.Name}
+        ID   = ${self.id}
+
+        Please do not deploy RDS instances in the default VPC.
+        EOT
+    }
+
+    postcondition {
+      condition     = can(lower(self.tags.Access) == "private")
+      error_message = <<-EOT
         The following subnet is not marked as private:
 
         Name = ${self.tags.Name}
@@ -23,7 +35,6 @@ data "aws_subnet" "input" {
     }
   }
 }
-
 
 
 ##################################
