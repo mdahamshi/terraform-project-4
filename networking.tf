@@ -19,16 +19,18 @@ moved {
 }
 
 resource "aws_subnet" "private1" {
-  vpc_id     = aws_vpc.custom.id
-  cidr_block = "10.0.0.0/24"
+  vpc_id            = aws_vpc.custom.id
+  cidr_block        = "10.0.0.0/24"
+  availability_zone = "eu-west-1a"
   tags = {
     Name   = "subnet-custom-vpc-1"
     Access = "Private"
   }
 }
 resource "aws_subnet" "private2" {
-  vpc_id     = aws_vpc.custom.id
-  cidr_block = "10.0.1.0/24"
+  vpc_id            = aws_vpc.custom.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "eu-west-1b"
   tags = {
     Name   = "subnet-custom-vpc-2"
     Access = "Private"

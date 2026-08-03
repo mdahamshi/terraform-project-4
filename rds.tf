@@ -11,7 +11,7 @@ module "database" {
     aws_subnet.private2.id,
   ]
   credentials = {
-    username = "db-admin"
+    username = "db_admin"
     password = "12A3a332"
   }
 }
